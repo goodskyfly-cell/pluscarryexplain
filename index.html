@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>數學練習單：二位數加一位數（精確對齊版）</title>
+    <style>
+        @page { size: A4; margin: 15mm; }
+        body { font-family: "Microsoft JhengHei", sans-serif; line-height: 1.6; color: #333; padding: 10px; }
+        .container { width: 100%; max-width: 800px; margin: 0 auto; }
+        
+        h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
+        
+        /* 第一版：老師的小秘訣樣式 */
+        .instruction { background-color: #f9f9f9; border-left: 5px solid #3498db; padding: 20px; margin-bottom: 30px; border-radius: 4px; }
+        .example-area { display: flex; align-items: center; justify-content: space-around; margin-top: 15px; background: white; padding: 10px; border: 1px solid #eee; }
+
+        /* 直式核心對齊邏輯 (CSS Grid) */
+        .math-problem-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px 20px; justify-items: center; margin-top: 30px; }
+        
+        .vertical-math {
+            display: inline-grid;
+            grid-template-columns: 40px 45px 45px; /* 符號欄, 十位欄, 個位欄 */
+            grid-template-rows: 40px 50px 50px 10px 60px; /* 進位框, 被加數, 加數, 線, 答案 */
+            align-items: center;
+            justify-items: center;
+            font-size: 38px;
+            font-family: "Consolas", "Courier New", monospace; /* 等寬字體確保數字對齊 */
+            font-weight: bold;
+        }
+
+        /* 虛線空格：固定在第二欄（十位數） */
+        .carry-box {
+            grid-column: 2;
+            grid-row: 1;
+            width: 32px;
+            height: 32px;
+            border: 2px dashed #7f8c8d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #7f8c8d;
+        }
+
+        .operator { grid-column: 1; grid-row: 3; }
+        .num-tens { grid-column: 2; }
+        .num-ones { grid-column: 3; }
+        .hr-line { grid-column: 1 / span 3; grid-row: 4; width: 100%; border-bottom: 3px solid black; }
+        
+        footer { margin-top: 60px; text-align: center; border-top: 1px solid #ccc; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>數學練習單：二位數加一位數</h1>
+    
+    <section class="instruction">
+        <h3>【老師的進位小秘訣】</h3>
+        <p>1. 先算<strong>個位數</strong>：如果相加滿 10，就要記得「進位」。</p>
+        <p>2. 寫下<strong>進位數字</strong>：在十位數上方的 <span style="border:1px dashed #7f8c8d; padding: 0 8px;"> </span> 虛線框裡寫下 1。</p>
+        <p>3. 再算<strong>十位數</strong>：把原本的十位數加上進位的 1，就是答案囉！</p>
+        
+        <div class="example-area">
+            <span>範例示範：28 + 5 = 33</span>
+            <div class="vertical-math" style="font-size: 28px; grid-template-rows: 35px 40px 40px 10px 50px;">
+                <div class="carry-box" style="width:25px; height:25px;">1</div>
+                <div class="num-tens" style="grid-row: 2;">2</div><div class="num-ones" style="grid-row: 2;">8</div>
+                <div class="operator" style="grid-row: 3;">+</div><div class="num-ones" style="grid-row: 3;">5</div>
+                <div class="hr-line" style="grid-row: 4;"></div>
+                <div class="num-tens" style="grid-row: 5;">3</div><div class="num-ones" style="grid-row: 5;">3</div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <h3>【動手試試看】</h3>
+    <div class="math-problem-container">
+        <div class="vertical-math">
+            <div class="carry-box"></div>
+            <div class="num-tens" style="grid-row: 2;">3</div><div class="num-ones" style="grid-row: 2;">7</div>
+            <div class="operator">+</div><div class="num-ones" style="grid-row: 3;">6</div>
+            <div class="hr-line"></div>
+        </div>
+
+        <div class="vertical-math">
+            <div class="carry-box"></div>
+            <div class="num-tens" style="grid-row: 2;">4</div><div class="num-ones" style="grid-row: 2;">5</div>
+            <div class="operator">+</div><div class="num-ones" style="grid-row: 3;">9</div>
+            <div class="hr-line"></div>
+        </div>
+
+        <div class="vertical-math">
+            <div class="carry-box"></div>
+            <div class="num-tens" style="grid-row: 2;">1</div><div class="num-ones" style="grid-row: 2;">9</div>
+            <div class="operator">+</div><div class="num-ones" style="grid-row: 3;">4</div>
+            <div class="hr-line"></div>
+        </div>
+
+        <div class="vertical-math">
+            <div class="carry-box"></div>
+            <div class="num-tens" style="grid-row: 2;">6</div><div class="num-ones" style="grid-row: 2;">8</div>
+            <div class="operator">+</div><div class="num-ones" style="grid-row: 3;">7</div>
+            <div class="hr-line"></div>
+        </div>
+    </div>
+
+    <footer>
+        班級：__________ 座號：__________ 姓名：__________
+    </footer>
+</div>
+
+</body>
+</html>
